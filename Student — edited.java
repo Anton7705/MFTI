@@ -1,4 +1,5 @@
 // 1.6.9
+
 import java.util.Arrays;
 
 public class Student {
@@ -15,11 +16,10 @@ public class Student {
             return 0;
         }
         double count = 0;
-        for (int i = 0; i < grades.length; i++) {
-            count = count + (double) grades[i];
+        for (int grade : grades) {
+            count = count + grade;
         }
-        count = count / grades.length;
-        return count;
+        return count / grades.length;
     }
 
     public boolean isExcellent() {
@@ -40,11 +40,11 @@ public class Student {
 
     public void setGrades(int[] grades) {
         for (int i = 0; i < grades.length; i++) {
-            if (grades[i] >= 2 && grades[i] <= 5) {
-                this.grades = grades;
-            } else throw new IllegalArgumentException("Студент может получать оценки в диапозоне от 2 до 5");
+            if (!(grades[i] >= 2 && grades[i] <= 5)) {
+                throw new IllegalArgumentException("Студент может получать оценки в диапозоне от 2 до 5");
+            }
         }
-
+        this.grades = grades.clone();
     }
 
     @Override

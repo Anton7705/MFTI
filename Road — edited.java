@@ -1,14 +1,14 @@
 //1.6.10
-public class Road2 {
-    private String destination;
+public class Road {
+    private City destination;
     private int cost;
 
-    Road2(String destination, int cost) {
+    Road(City destination, int cost) {
         this.destination = destination;
         this.cost = cost;
     }
 
-    public String getDestination() {
+    public City getDestination() {
         return destination;
     }
 
@@ -16,8 +16,12 @@ public class Road2 {
         return cost;
     }
 
+    public void setCost(int cost) {
+        this.cost = cost;
+    }
+
     @Override
     public String toString() {
-        return destination + " : " + cost;
+        return destination.getName() + " : " + cost;
     }
 }

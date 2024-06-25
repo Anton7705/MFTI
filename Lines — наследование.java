@@ -1,4 +1,4 @@
 //3.3.5
-abstract public class Lines {
+interface Lines {
     public abstract int length();
 }

@@ -2,7 +2,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class PolyLine extends Lines{
+public class PolyLine implements Lines{
     List<Point> list = new ArrayList<>();
 
     public PolyLine(List<Point> list) {

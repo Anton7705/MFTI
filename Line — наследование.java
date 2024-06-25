@@ -1,5 +1,5 @@
 // 1.6.6
-public class Line extends Lines{
+public class Line implements Lines{
     private Point p1;
     private Point p2;
 

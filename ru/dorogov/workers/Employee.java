@@ -2,7 +2,7 @@ package ru.dorogov.workers;
 
 // 1.6.11
 // 4.2.1
-class Employee {
+public class Employee {
     String name;
     Department department;
 

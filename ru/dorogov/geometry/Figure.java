@@ -1,9 +1,11 @@
+package ru.dorogov.geometry;
+
 //3.2.4
-abstract class Figures {
+public abstract class Figure {
     public static final double PI = 3.14;
     private Point p1;
 
-    public Figures(Point p1) {
+    public Figure(Point p1) {
         setP1(p1);
     }
 

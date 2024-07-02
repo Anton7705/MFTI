@@ -1,3 +1,5 @@
+package ru.dorogov.transport;
+
 //1.6.10
 public class Road {
     private City destination;

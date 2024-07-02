@@ -1,9 +1,11 @@
+package ru.dorogov.mathematics;
+
 // 1.6.4
 public class Fraction {
     private final int num;
     private final int denum;
 
-    Fraction(int num, int denum) {
+    public Fraction(int num, int denum) {
         if (denum <= 0) {
             throw new IllegalArgumentException("знаменатель не может быть отрицательным или равным 0");
         }

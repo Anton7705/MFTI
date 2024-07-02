@@ -1,7 +1,10 @@
+package ru.dorogov.geometry;
+
 // Базовый класс для методов
-public abstract class Metods {
+public class Methods {
+    private Methods(){}
     //3.3.3
-    public static double summSquare(Figures... figures) {
+    public static double summSquare(Figure... figures) {
         double res = 0;
         for (int i = 0; i < figures.length; i++) {
             res += figures[i].findSquare();
@@ -9,7 +12,7 @@ public abstract class Metods {
         return res;
     }
     //3.3.5
-    public static int summOfLines(Lines... lines) {
+    public static int summOfLines(Lengthable... lines) {
         int res = 0;
         for (int i = 0; i < lines.length; i++) {
             res += lines[i].length();

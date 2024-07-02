@@ -1,4 +1,4 @@
-// 1.6.10
+package ru.dorogov.transport;// 1.6.10
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,5 +50,3 @@ public class City {
         return "Город " + name + ", пути назначения и стоимость " + roads;
     }
 }
-
-

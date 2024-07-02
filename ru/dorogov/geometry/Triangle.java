@@ -1,5 +1,7 @@
+package ru.dorogov.geometry;
+
 //3.2.4
-public class Triangle extends Figures {
+public class Triangle extends Figure {
     private Point p2;
     private Point p3;
 

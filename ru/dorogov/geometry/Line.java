@@ -1,13 +1,15 @@
+package ru.dorogov.geometry;
+
 // 1.6.6
-public class Line {
+public class Line implements Lengthable {
     private Point p1;
     private Point p2;
 
-    Line(Point p1, Point p2) {
+    public Line(Point p1, Point p2) {
         this(p1.getX(), p1.getY(), p2.getX(), p2.getY());
     }
 
-    Line(int x1, int x2, int y1, int y2) {
+    public Line(int x1, int x2, int y1, int y2) {
         this.p1 = new Point(x1, x2);
         this.p2 = new Point(y1, y2);
     }

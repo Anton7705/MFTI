@@ -1,11 +1,20 @@
+package ru.dorogov.geometry;
+
 //3.1.2
 public class Point {
     private int x;
     private int y;
 
-    Point(int x, int y) {
+    public Point(int x, int y) {
         this.x = x;
         this.y = y;
+    }
+
+    public int lengthTo(Point target) {
+        int i1 = this.getX() - target.getX();
+        int i2 = this.getY() - target.getY();
+        int length = i1 * i1 + i2 * i2;
+        return (int) Math.sqrt(length);
     }
 
     @Override

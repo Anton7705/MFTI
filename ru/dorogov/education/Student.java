@@ -1,4 +1,4 @@
-// 1.6.9
+package ru.dorogov.education;// 1.6.9
 
 import java.util.Arrays;
 
@@ -53,4 +53,3 @@ public class Student {
     }
 
 }
-

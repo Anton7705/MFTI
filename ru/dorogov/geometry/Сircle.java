@@ -1,5 +1,7 @@
+package ru.dorogov.geometry;
+
 //3.2.4
-public class Сircle extends Figures {
+public class Сircle extends Figure {
     private int radius;
 
     public Сircle(Point p1, int radius) {

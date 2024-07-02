@@ -1,9 +1,11 @@
-//3.1.2
+package ru.dorogov.geometry;//3.1.2
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class PolyLine implements Lines{
+public class PolyLine implements Lengthable {
     List<Point> list = new ArrayList<>();
+
 
     public PolyLine(List<Point> list) {
         this.list = list;
@@ -15,17 +17,14 @@ public class PolyLine implements Lines{
         }
     }
 
-    private int lengthTwo(Point p1, Point p2) {
-        int i1 = p1.getX() - p2.getX();
-        int i2 = p1.getY() - p2.getY();
-        int length = i1 * i1 + i2 * i2;
-        return (int) Math.sqrt(length);
-    }
 
     public int length() {
+        if (list==null || list.size()<2) {
+            return 0;
+        }
         int res = 0;
         for (int i = 0; i < list.size() - 1; i++) {
-            res += lengthTwo(list.get(i), list.get(i + 1));
+            res += list.get(i).lengthTo(list.get(i + 1));
         }
         return res;
     }

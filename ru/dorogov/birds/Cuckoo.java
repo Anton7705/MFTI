@@ -1,3 +1,5 @@
+package ru.dorogov.birds;
+
 import java.util.Random;
 
 //3.2.3

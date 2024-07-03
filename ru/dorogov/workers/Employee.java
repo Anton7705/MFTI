@@ -7,9 +7,12 @@ public class Employee {
     Department department;
 
     public Employee(String name, Department department) {
+        this(name);
+        this.setDepartment(department);
+    }
+
+    public Employee(String name) {
         this.name = name;
-        this.department = department;
-        department.employees.add(this);
     }
 
     public String getName() {
@@ -26,13 +29,13 @@ public class Employee {
 
     public void setDepartment(Department department) {
         if (department == this.department) return;
-        if (department != null && this == department.head) this.department.setHead(null);
+        if (this.department != null && this == this.department.head) this.department.head = null;
         if (this.department != null) {
             this.department.employees.remove(this);
         }
         this.department = department;
         if (department != null) {
-            department.addEmployee(this);
+            department.employees.add(this);
         }
     }
 
@@ -46,3 +49,4 @@ public class Employee {
         return name + " работает в отделе " + department.name + ", начальник которого " + department.head.name;
     }
 }
+

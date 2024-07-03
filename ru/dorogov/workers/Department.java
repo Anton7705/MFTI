@@ -22,7 +22,7 @@ public class Department {
     }
 
     public List<Employee> getEmployees() {
-        return employees;
+        return new ArrayList<>(employees);
     }
 
     public String getName() {
@@ -41,6 +41,10 @@ public class Department {
         if (head != null) {
             head.setDepartment(this);
         }
+        if (this.head != null && head == null) {
+            this.head.setDepartment(null);
+        }
         this.head = head;
     }
 }
+

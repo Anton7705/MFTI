@@ -13,11 +13,6 @@ import ru.dorogov.transport.Road;
 
 public class Main {
     public static void main(String[] args) {
-        Point l1 = new Point(1,1);
-        Point l2 = new Point(1,1);
-        Point l3 = l2.clone();
-        l3.setX(4);
-        System.out.println(l1.equals(l3));
     }
 }
 

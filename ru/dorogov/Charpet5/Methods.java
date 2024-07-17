@@ -58,10 +58,10 @@ public class Methods {
     }
 
     // 5.2.4
-    public static ArrayList<Integer> fill (ArrayList<? super Integer> arrays) {
+    public static ArrayList<? super Integer> fill (ArrayList<? super Integer> arrays) {
         for (int i = 1; i < 101; i++) {
             arrays.add(i);
         }
-        return (ArrayList<Integer>) arrays;
+        return arrays;
     }
 }

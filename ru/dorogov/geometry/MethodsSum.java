@@ -1,8 +1,8 @@
 package ru.dorogov.geometry;
 
 // Базовый класс для методов
-public class Methods {
-    private Methods(){}
+public class MethodsSum {
+    private MethodsSum(){}
     //3.3.3
     public static double summSquare(Figure... figures) {
         double res = 0;

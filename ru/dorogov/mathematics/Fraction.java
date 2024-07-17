@@ -105,13 +105,14 @@ public class Fraction extends Number implements Cloneable{
         return (double) num / denum;
     }
 
+
     @Override
     public Fraction clone() {
         try {
             return (Fraction) super.clone();
         }
         catch (CloneNotSupportedException ex) {
-            throw new RuntimeException();
+            throw new RuntimeException(ex);
         }
     }
 }

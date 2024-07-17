@@ -12,15 +12,16 @@ public class Point implements Cloneable {
         this.y = y;
     }
 
+
     @Override
-    public final boolean equals(Object object) {
+    public boolean equals(Object object) {
         if (this == object) return true;
         if (!(object instanceof Point point)) return false;
         return x == point.x && y == point.y;
     }
 
     @Override
-    public final int hashCode() {
+    public int hashCode() {
         return Objects.hash(x, y);
     }
 
@@ -56,9 +57,8 @@ public class Point implements Cloneable {
     public Point clone() {
         try {
             return (Point) super.clone();
-        }
-        catch (CloneNotSupportedException ex) {
-            throw new RuntimeException();
+        } catch (CloneNotSupportedException ex) {
+            throw new RuntimeException(ex);
         }
     }
 }

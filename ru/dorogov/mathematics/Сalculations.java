@@ -1,5 +1,8 @@
 package ru.dorogov.mathematics;
 
+import ru.dorogov.geometry.Line;
+import ru.dorogov.geometry.Point;
+
 import static java.lang.Integer.parseInt;
 import static java.lang.Math.pow;
 

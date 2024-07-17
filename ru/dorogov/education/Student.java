@@ -1,8 +1,28 @@
-package ru.dorogov.education;// 1.6.9
+package ru.dorogov.education;
+// 1.6.9
+// 5.1.4
+
+import ru.dorogov.Charpet5.MyComparable;
 
 import java.util.Arrays;
 
-public class Student {
+public class Student implements MyComparable<Student> {
+
+    public Snapshot<Student> save() {
+        return new Snap();
+    }
+
+    private class Snap implements Snapshot<Student> {
+        private String name = Student.this.name;
+        private int[] grades = Student.this.grades.clone();
+
+        public void load() {
+            Student.this.name = this.name;
+            Student.this.grades = this.grades.clone();
+        }
+
+    }
+
     private String name;
     private int[] grades;
 
@@ -52,4 +72,13 @@ public class Student {
         return name + ": " + Arrays.toString(grades);
     }
 
+    @Override
+    public int compare(Student student) {
+        if (this.middle() > student.middle()) {
+            return 1;
+        }
+        if (this.middle() < student.middle()) {
+            return -1;
+        } else return 0;
+    }
 }

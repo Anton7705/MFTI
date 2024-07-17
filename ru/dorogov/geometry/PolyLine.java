@@ -34,12 +34,13 @@ public class PolyLine implements Lengthable {
     @Override
     public final boolean equals(Object object) {
         if (this == object) return true;
-        if (!(object instanceof PolyLine PolyLine)) return false;
-        return Objects.equals(list, PolyLine.list);
+        if (object == null || getClass() != object.getClass()) return false;
+        PolyLine polyLine = (PolyLine) object;
+        return Objects.equals(list, polyLine.list);
     }
 
     @Override
-    public final int hashCode() {
+    public int hashCode() {
         return Objects.hashCode(list);
     }
 

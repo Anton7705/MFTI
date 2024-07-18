@@ -59,6 +59,7 @@ public class Methods {
 
     // 5.2.4
     public static ArrayList<? super Integer> fill (ArrayList<? super Integer> arrays) {
+        arrays.clear();
         for (int i = 1; i < 101; i++) {
             arrays.add(i);
         }

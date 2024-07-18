@@ -19,15 +19,15 @@ public class Methods {
             if (line.getP1().getX() < 0) {
                 line.setP1(new Point3D(point3D.getX() - 10, point3D.getY(), point3D.getZ()));
                 return line;
-            } else if (line.getP1() instanceof Point point) {
-                if (line.getP1().getX() >= 0) {
-                    line.setP1(new Point(point.getX() + 10, point.getY()));
-                    return line;
-                }
-                if (line.getP1().getX() < 0) {
-                    line.setP1(new Point(point.getX() - 10, point.getY()));
-                    return line;
-                }
+            }
+        } else if (line.getP1() instanceof Point point) {
+            if (line.getP1().getX() >= 0) {
+                line.setP1(new Point(point.getX() + 10, point.getY()));
+                return line;
+            }
+            if (line.getP1().getX() < 0) {
+                line.setP1(new Point(point.getX() - 10, point.getY()));
+                return line;
             }
         }
         return line;

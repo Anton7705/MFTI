@@ -2,7 +2,7 @@ package ru.dorogov.education;
 // 1.6.9
 // 5.1.4
 
-import ru.dorogov.Charpet5.MyComparable;
+import ru.dorogov.Chapter5.MyComparable;
 
 import java.util.Arrays;
 

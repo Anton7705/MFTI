@@ -1,58 +1,109 @@
 package ru.dorogov.main;
-import ru.dorogov.Charpet5.*;
+
+import ru.dorogov.Chapter5.*;
 import ru.dorogov.education.*;
 import ru.dorogov.geometry.Line;
+import ru.dorogov.geometry.Point;
 import ru.dorogov.geometry.Point3D;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        Box<Integer> box = new Box<>();
-        box.set(3);
-        int i1 = box.get().intValue();
-        System.out.println(i1);
+        // 5.3.1
+        List<Integer> arr = Work.map(List.of("qwerty", "asdfg", "zx"), i -> i.length());
+        System.out.println(arr);
+        List<Integer> arr1 = Work.map(List.of(1, -3, 7), i -> {
+            if (i < 0) return -i;
+            return i;
+        });
+        System.out.println(arr1);
+        int[] i1 = {11, 2, 3, 4};
+        int[] i2 = {-10, 23, 9, 40};
+        int[] i3 = {11, 90, 30, 4};
+        List<Integer> arr2 = Work.map(List.of(i1, i2, i3), i -> {
+            int z = i[0];
+            for (int j = 1; j < i.length; j++) {
+                if (i[j] > z) {
+                    z = i[j];
+                }
+            }
+            return z;
+        });
+        System.out.println(arr2);
 
-        Storage<Integer> s = Storage.create(null);
-        int i2 = s.get(0).intValue();
-        System.out.println(i2);
 
-        Storage<Integer> s1 = Storage.create(99);
-        int i3 = s1.get(-1).intValue();
-        System.out.println(i3);
+        // 5.3.2
+        List<String> arr3 = Work.filter(List.of("qwerty", "asdfg", "zx"), i -> i.length() > 3);
+        System.out.println(arr3);
 
-        Storage<String> s2 = Storage.create(null);
-        System.out.println(s2.get("default"));
+        List<Integer> arr4 = Work.filter(List.of(1, -3, 7), i -> i < 0);
+        System.out.println(arr4);
 
-        Storage<String> s3 = Storage.create("hello");
-        System.out.println(s3.get("hello world"));
+        List<int[]> arr5 = Work.filter(List.of(i1, i2, i3), i -> {
+            for (int j = 0; j < i.length; j++) {
+                if (i[j] < 0) {
+                    return false;
+                }
+            }
+            return true;
+        });
 
-        Student stud1 = new Student("BOB", 5, 4, 5);
-        Student Stud2 = new Student("POP", 4, 5, 4);
-        System.out.println(stud1.compare(Stud2));
 
-        Line<Point3D> l1 = Line.create(new Point3D(0, 1, 1), new Point3D(5, 5, 5));
+        // 5.3.3
+        String arr6 = Work.reduce(List.of("qwerty", "asdfg", "zx"), (x, y) -> x + y).get("");
+        System.out.println(arr6);
+        Integer i11 = Work.reduce(List.of(1, -3, 7), (x, y) -> x + y).get(0);
+        System.out.println(i11);
+        List<List<Integer>> listOfLists = new ArrayList<>();
+        listOfLists.add(List.of(1, 2, 3));
+        listOfLists.add(List.of(4, 5, 6));
+        Integer i22 = Work.reduce(Work.map(listOfLists, i -> i.size()), (x, y) -> x + y).get(0);
+        System.out.println(i22);
+
+        List<List<Integer>> l1 = Work.collect(List.of(1, -3, 7, -10, 10), () -> {
+                    List<List<Integer>> list = new ArrayList<>();
+                    list.add(new ArrayList<>());
+                    list.add(new ArrayList<>());
+                    return list;
+                }, (list, num) -> {
+                    if (num > 0) {
+                        list.get(0).add(num);
+                    } else if (num < 0) {
+                        list.get(1).add(num);
+                    }
+                }
+        );
         System.out.println(l1);
-        Methods.move(l1);
-        System.out.println(l1);
 
-        Box<Integer> b1 = new Box<>();
-        b1.set(55);
-        Box<Double> b2 = new Box<>();
-        b2.set(33.0);
-        Box<Number> b3 = new Box<>();
-        b3.set(900);
-        Box<Float> b4 = new Box<>();
-        b4.set(9000.90F);
-        System.out.println(Methods.max(b1, b2, b3, b4));
+        List<List<String>> l2 = Work.collect(
+                List.of("qwerty", "asdfg", "zx", "qw"),
+                () -> {
+                    List<List<String>> list = new ArrayList<>();
+                    for (int i = 0; i < 10; i++) {
+                        list.add(new ArrayList<>());
+                    }
+                    return list;
+                },
+                (list, str) -> list.get(str.length()).add(str)
+        );
 
-        Box<Object> b5 = new Box<>();
-        Methods.pointInBox(b5);
-        System.out.println(b5.get());
+        System.out.println(l2);
 
-        ArrayList<Number> arrayList = new ArrayList<>();
-        Methods.fill(arrayList);
-        System.out.println(arrayList);
+        List<List<String>> l3 = Work.collect(List.of("qwerty", "asdfg", "qwerty", "qw"), () -> {
+            List<List<String>> list = new ArrayList<>();
+            for (int i = 0; i < 10; i++) {
+                list.add(new ArrayList<>());
+            }
+            return list;
+        }, (list, num) -> {
+            if (!list.get(num.length()).contains(num)) {
+                list.get(num.length()).add(num);
+            }
+        });
+        System.out.println(l3);
     }
 }
 

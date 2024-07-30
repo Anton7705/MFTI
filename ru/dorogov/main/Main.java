@@ -1,5 +1,6 @@
 package ru.dorogov.main;
 
+import ru.dorogov.education.Student;
 import ru.dorogov.сhapter5.*;
 import ru.dorogov.geometry.Point3D;
 
@@ -8,20 +9,19 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        Hot h1 = Hot.HOT;
-        int i = h1.grade;
-        Hot h2 = Hot.MEDIUM;
-        Hot h3 = Hot.HOT;
-        Hot h4 = Hot.values()[0];
-        System.out.println(h1 == h4);
-        System.out.println(i);
+        Student st1 = new Student("Vasia");
+        st1.addMarks(3);
+        System.out.println(st1);
+
+        st1.setName("Ann");
+        st1.addMarks(5);
+        st1.addMarks(5);
+        System.out.println(st1);
+
+        st1.undo();
+        st1.undo();
+        st1.undo();
+        System.out.println(st1);
     }
 }
 
-enum Hot {LOW(0), MEDIUM(10), HOT(20);
-    int grade;
-
-    Hot(int grade) {
-        this.grade = grade;
-    }
-}

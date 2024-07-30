@@ -4,81 +4,100 @@ package ru.dorogov.education;
 
 import ru.dorogov.сhapter5.MyComparable;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.function.Predicate;
 
 public class Student implements MyComparable<Student> {
-
-    public Snapshot<Student> save() {
-        return new Snap();
-    }
-
-    private class Snap implements Snapshot<Student> {
-        private String name = Student.this.name;
-        private int[] grades = Student.this.grades.clone();
-
-        public void load() {
-            Student.this.name = this.name;
-            Student.this.grades = this.grades.clone();
-        }
-
-    }
-
     private String name;
-    private int[] grades;
+    private final List<Integer> marks = new ArrayList<>();
+    private final Predicate<Integer> rule;
+    private List<Action> undoList = new ArrayList<>();
 
-    public Student(String name, int... grades) {
+    public Student (String name, int... marks) {
+        this(name, x -> true, marks);
+    }
+
+    public Student(String name, Predicate<Integer> rule, int... marks) {
+        this.rule = rule;
         this.name = name;
-        setGrades(grades);
+        for (int i : marks) {
+            if (rule.test(i)) {
+                this.marks.add(i);
+            } else {
+                throw new IllegalArgumentException();
+            }
+        }
     }
 
-    public double middle() {
-        if (grades == null || grades.length == 0) {
-            return 0;
+    public void addMarks(int... marks) {
+        for (int i : marks) {
+            if (rule.test(i))
+                this.marks.add(i);
+            else {
+                throw new IllegalArgumentException();
+            }
         }
-        double count = 0;
-        for (int grade : grades) {
-            count = count + grade;
-        }
-        return count / grades.length;
+        undoList.add(() -> {
+            int count = marks.length;
+            while (count > 0) {
+                this.marks.removeLast();
+                count--;
+            }
+        });
     }
 
-    public boolean isExcellent() {
-        return middle() == 5.0;
+    public void removeMark(int index) {
+
+        int tmp = this.marks.remove(index);
+        undoList.add(() -> this.marks.add(index, tmp));
+    }
+
+    public List<Integer> getMarks() {
+        return new ArrayList<>(marks);
+    }
+
+    public void setName(String name) {
+        String str = this.name;
+        undoList.add(() -> this.name = str);
+        this.name = name;
     }
 
     public String getName() {
         return name;
     }
 
-    public int[] getGrades() {
-        return grades.clone();
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setGrades(int[] grades) {
-        for (int i = 0; i < grades.length; i++) {
-            if (!(grades[i] >= 2 && grades[i] <= 5)) {
-                throw new IllegalArgumentException("Студент может получать оценки в диапозоне от 2 до 5");
-            }
+    public double getAver() {
+        if (marks.isEmpty()) {
+            return 0;
         }
-        this.grades = grades.clone();
+        int sum = 0;
+        int count = 0;
+        for (Integer i :
+                marks) {
+            sum += i;
+            count++;
+        }
+        return (double) sum / count;
     }
 
     @Override
     public String toString() {
-        return name + ": " + Arrays.toString(grades);
+        if (this.marks.isEmpty()) {
+            return name + ": нет оценок";
+        } else return name + ": " + marks;
     }
 
     @Override
-    public int compare(Student student) {
-        if (this.middle() > student.middle()) {
-            return 1;
-        }
-        if (this.middle() < student.middle()) {
-            return -1;
-        } else return 0;
+    public int compare(Student compareStud) {
+        if (this.getAver() > compareStud.getAver()) return 1;
+        if (this.getAver() < compareStud.getAver()) return -1;
+        return 0;
+    }
+
+    public void undo () {
+        undoList.removeLast().make();
+
     }
 }

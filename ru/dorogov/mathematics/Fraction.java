@@ -100,7 +100,7 @@ public class Fraction implements Cloneable, Fractionable {
 
     @Override
     public double doubleValue() {
-        System.out.println("TEST");
+        System.out.println("-------------");
         return (double) num / denum;
     }
 

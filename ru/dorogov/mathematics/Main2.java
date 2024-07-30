@@ -3,7 +3,7 @@ package ru.dorogov.mathematics;
 public class Main2 {
     public static void main(String[] args) {
         Fraction f1 = new Fraction(1,2);
-        FractionDoubleValue f2 = new FractionDoubleValue(f1);
+        FractionCache f2 = new FractionCache(f1);
 
         test(f2);
     }

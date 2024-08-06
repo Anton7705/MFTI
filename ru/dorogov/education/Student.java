@@ -49,7 +49,6 @@ public class Student implements MyComparable<Student> {
     }
 
     public void removeMark(int index) {
-
         int tmp = this.marks.remove(index);
         undoList.add(() -> this.marks.add(index, tmp));
     }
@@ -98,6 +97,5 @@ public class Student implements MyComparable<Student> {
 
     public void undo () {
         undoList.removeLast().make();
-
     }
 }

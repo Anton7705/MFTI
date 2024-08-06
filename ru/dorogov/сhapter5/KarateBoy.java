@@ -1,9 +1,12 @@
 package ru.dorogov.сhapter5;
 
 import ru.dorogov.education.Student;
+import ru.dorogov.geometry.Line;
+import ru.dorogov.geometry.Point;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class KarateBoy{
     String name;
@@ -23,30 +26,22 @@ public class KarateBoy{
 
 }
 
-class Main {
-    public static void main(String[] args) {
-        KarateBoy kb = new KarateBoy("BOB");
-        Combo combo1 = new Combo();
-        Combo combo2 = new Combo();
-        combo1.list.add(x -> x.kick());
-        combo1.list.add(x -> x.punch());
-        combo1.list.add(x -> x.jump());
-        combo1.make(kb);
-        combo2.list.add(x -> combo1.make(x));
-        combo2.list.add(combo1);
-        combo2.make(kb);
 
-        Student s1 = new Student("BOB", x -> x > 2 && x < 5, 3,4);
+    class Combo implements Kick<KarateBoy> {
+        List<Kick<KarateBoy>> list = new ArrayList<>();
 
-    }
-}
-
-class Combo implements Kick<KarateBoy> {
-    List<Kick<KarateBoy>> list = new ArrayList<>();
-    public void make (KarateBoy kb) {
-        for (Kick<KarateBoy> c : list) {
-            c.make(kb);
+        public void make(KarateBoy kb) {
+            for (Kick<KarateBoy> c : list) {
+                c.make(kb);
+            }
         }
     }
 
-}
+    class Punch implements Kick<KarateBoy> {
+        @Override
+        public void make(KarateBoy karateBoy) {
+            karateBoy.punch();
+        }
+    }
+
+

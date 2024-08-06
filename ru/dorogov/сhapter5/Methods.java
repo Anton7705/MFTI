@@ -11,7 +11,7 @@ public class Methods {
 
     //    5.2.1
     public static <T extends Point> void move(Line<T> line) {
-        line.getP1().setX(line.getP1().getX()+10);
+        line.getP1().setX(line.getP1().getX() + 10);
     }
 
 

@@ -78,4 +78,5 @@ public class Line<T extends Point> implements Lengthable, Cloneable {
             throw new RuntimeException(ex);
         }
     }
+
 }

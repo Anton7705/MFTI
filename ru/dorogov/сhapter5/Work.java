@@ -1,31 +1,42 @@
 package ru.dorogov.сhapter5;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Work {
+public class Work<T> {
+    private List<T> list;
+    private List<Keeper<T>> actions;
 
-    public static <T, V> List<T> map(List<V> list, Operation<V, T> operation) {
-
-        var list1 = new ArrayList<T>();
-        for (V s : list) {
-            list1.add(operation.make(s));
-        }
-        return list1;
+    public Work<T> filter(Checker<T> checker) {
+        actions.add(new FilterKeeper<>(checker));
+        return this;
     }
 
-    public static <T> List<T> filter(List<T> list, Checker<T> checker) {
-        var list1 = new ArrayList<T>();
+    public Work<T> map(Operation<T, T> operation) {
+        actions.add(new MapKeeper<>(operation));
+        return this;
+    }
 
-        for (T s : list) {
-            if (checker.check(s)) {
-                list1.add(s);
+    private void adding() {
+        for (int i = 0; i < actions.size(); i++) {
+            for (int j = 0; j < list.size(); j++) {
+                actions.get(i).apply(list.get(j));
             }
+            list = actions.get(i).GetList();
         }
-        return list1;
     }
 
-    public static <T> Storage<T> reduce(List<T> list, Summator<T> summator) {
+
+
+    public Storage<T> reduce(Summator<T> summator) {
+
+        if (this.list == null || this.list.isEmpty()) {
+            return Storage.create(null);
+        }
+
+        adding();
+
         if (list == null || list.isEmpty()) {
             return Storage.create(null);
         }
@@ -34,16 +45,27 @@ public class Work {
         for (int i = 1; i < list.size(); i++) {
             res = summator.make(res, list.get(i));
         }
-
+        System.out.println(list);
         return Storage.create(res);
     }
 
-    public static <T, P> P collect(List<T> list, CollectionCreator<P> creator, MyCollection<P, T> collector) {
+    public <P> P collect(CollectionCreator<P> creator, MyCollection<P, T> collector) {
+
+        adding();
+
         P result = creator.create();
-        for (T element : list) {
+        for (T element : this.list) {
             collector.add(result, element);
         }
         return result;
     }
 
+    private Work(List<T> list) {
+        this.list = list;
+        this.actions = new ArrayList<>();
+    }
+
+    public static <T> Work<T> creator(List<T> list) {
+        return new Work<>(list);
+    }
 }

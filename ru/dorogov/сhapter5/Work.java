@@ -6,25 +6,25 @@ import java.util.List;
 
 public class Work<T> {
     private List<T> list;
-    private List<Keeper<T>> actions;
+    private List<Keeper<T>> actions = new ArrayList<>();
+
+
+    public static <T> Work<T> create(List<T> list) {
+        return new Work<>(list);
+    }
+
+    private Work(List<T> list) {
+        this.list = list;
+    }
 
     public Work<T> filter(Checker<T> checker) {
         actions.add(new FilterKeeper<>(checker));
         return this;
     }
 
-    public Work<T> map(Operation<T, T> operation) {
+    public <V> Work<V> map(Operation<T, V> operation) {
         actions.add(new MapKeeper<>(operation));
-        return this;
-    }
-
-    private void adding() {
-        for (int i = 0; i < actions.size(); i++) {
-            for (int j = 0; j < list.size(); j++) {
-                actions.get(i).apply(list.get(j));
-            }
-            list = actions.get(i).GetList();
-        }
+        return (Work<V>) this;
     }
 
 
@@ -45,7 +45,7 @@ public class Work<T> {
         for (int i = 1; i < list.size(); i++) {
             res = summator.make(res, list.get(i));
         }
-        System.out.println(list);
+
         return Storage.create(res);
     }
 
@@ -60,12 +60,13 @@ public class Work<T> {
         return result;
     }
 
-    private Work(List<T> list) {
-        this.list = list;
-        this.actions = new ArrayList<>();
+    private void adding() {
+        for (int i = 0; i < actions.size(); i++) {
+            for (int j = 0; j < list.size(); j++) {
+                actions.get(i).apply(list.get(j));
+            }
+            list = actions.get(i).GetList();
+        }
     }
 
-    public static <T> Work<T> creator(List<T> list) {
-        return new Work<>(list);
-    }
 }

@@ -15,7 +15,7 @@ public class Student implements MyComparable<Student> {
     private final Predicate<Integer> rule;
     private List<Action> undoList = new ArrayList<>();
 
-    public Student (String name, int... marks) {
+    public Student(String name, int... marks) {
         this(name, x -> true, marks);
     }
 
@@ -60,7 +60,7 @@ public class Student implements MyComparable<Student> {
     public void setName(String name) {
         String str = this.name;
         undoList.add(() -> this.name = str);
-        this.name = name;
+         this.name = name;
     }
 
     public String getName() {
@@ -95,7 +95,7 @@ public class Student implements MyComparable<Student> {
         return 0;
     }
 
-    public void undo () {
+    public void undo() {
         undoList.removeLast().make();
     }
 }

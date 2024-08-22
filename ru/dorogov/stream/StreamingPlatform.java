@@ -1,4 +1,4 @@
-package ru.dorogov.сhapter5;
+package ru.dorogov.stream;
 
 import java.util.ArrayList;
 import java.util.List;

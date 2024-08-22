@@ -30,9 +30,10 @@ public class KarateBoy{
     class Combo implements Kick<KarateBoy> {
         List<Kick<KarateBoy>> list = new ArrayList<>();
 
+        @Override
         public void make(KarateBoy kb) {
-            for (Kick<KarateBoy> c : list) {
-                c.make(kb);
+            for (int i = 0; i < list.size(); i++) {
+                list.get(i).make(kb);
             }
         }
     }

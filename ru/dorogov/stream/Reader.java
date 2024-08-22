@@ -1,4 +1,4 @@
-package ru.dorogov.сhapter5;
+package ru.dorogov.stream;
 
 public interface Reader<T> {
     T read ();

@@ -3,11 +3,11 @@ package ru.dorogov.сhapter5;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MapKeeper<T> implements Keeper<T> {
-    private Operation<T, T> operation;
-    private List<T> listl = new ArrayList<>();
+public class MapKeeper<T, V> implements Keeper<T> {
+    private Operation<T, V> operation;
+    private List<V> listl = new ArrayList<>();
 
-    public MapKeeper(Operation<T, T> operation) {
+    public MapKeeper(Operation<T, V> operation) {
         this.operation = operation;
     }
 
@@ -17,7 +17,9 @@ public class MapKeeper<T> implements Keeper<T> {
     }
 
     @Override
-    public List<T> GetList() {
-        return listl;
+    public List<V> GetList() {
+        List<V> tmp  = listl;
+        listl = null;
+        return tmp;
     }
 }

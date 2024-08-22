@@ -19,6 +19,8 @@ public class FilterKeeper<T> implements Keeper<T> {
 
     @Override
     public List<T> GetList() {
-        return list;
+        List<T> tmp  = list;
+        list = null;
+        return tmp;
     }
 }

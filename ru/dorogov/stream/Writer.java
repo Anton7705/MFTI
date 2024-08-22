@@ -1,4 +1,4 @@
-package ru.dorogov.сhapter5;
+package ru.dorogov.stream;
 
 public interface Writer<T> {
     void write(T t);

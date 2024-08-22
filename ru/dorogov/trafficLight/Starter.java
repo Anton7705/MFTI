@@ -1,4 +1,4 @@
-package ru.dorogov.сhapter5;
+package ru.dorogov.trafficLight;
 
 public class Starter {
     public static void main(String[] args) {
@@ -6,12 +6,12 @@ public class Starter {
         tl.next();
         tl.next();
         tl.next();
+        tl.next();
+        tl.next();
+        tl.next();
+        tl.next();
         tl.waiting();
         tl.next();
-        tl.next();
-        tl.next();
-        tl.next();
-        tl.on();
         tl.next();
         tl.next();
     }
@@ -24,10 +24,11 @@ class TrafficLight {
         System.out.println(cur);
         cur = cur.next();
     }
+
     public void waiting() {
         cur = new yBlack();
-
     }
+
     public void on() {
         cur = new Red();
     }
@@ -81,16 +82,17 @@ class YRed implements Color {
     }
 }
 
-class Black implements Color {
-    public Color next() {
-        return this;
-    }
-}
+//class Black implements Color {
+//    public Color next() {
+//        return this;
+//    }
+//}
 
 class yBlack implements Color {
     public Color next() {
         return new bYellow();
     }
+
     @Override
     public String toString() {
         return "Black";
@@ -101,6 +103,7 @@ class bYellow implements Color {
     public Color next() {
         return new yBlack();
     }
+
     @Override
     public String toString() {
         return "Yellow";

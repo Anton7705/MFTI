@@ -11,13 +11,14 @@ public class PolyLine implements Lengthable {
         return new ArrayList<>(list);
     }
 
-    public void setList(List<Point> list) {
+    public PolyLine setList(List<Point> list) {
         for (int j = 0; j < list.size(); j++) {
             if (list.get(j) == null || list.size() < 2) {
                 throw new IllegalArgumentException("Ломанная линия не должна содержать null элементы и иметь минимум две точки");
             }
         }
         this.list = list;
+        return this;
     }
 
     public PolyLine(List<Point> list) {
@@ -58,6 +59,6 @@ public class PolyLine implements Lengthable {
 
     @Override
     public String toString() {
-        return "Линия " + list;
+        return "Ломаная линия " + list;
     }
 }

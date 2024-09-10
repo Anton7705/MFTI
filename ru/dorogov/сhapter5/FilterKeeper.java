@@ -10,6 +10,7 @@ public class FilterKeeper<T> implements Keeper<T> {
     public FilterKeeper(Checker<T> checker) {
         this.checker = checker;
     }
+
     @Override
     public void apply(T value) {
         if (checker.check(value)) {
@@ -19,7 +20,7 @@ public class FilterKeeper<T> implements Keeper<T> {
 
     @Override
     public List<T> GetList() {
-        List<T> tmp  = list;
+        List<T> tmp = list;
         list = null;
         return tmp;
     }

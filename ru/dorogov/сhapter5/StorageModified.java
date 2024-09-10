@@ -2,7 +2,7 @@ package ru.dorogov.сhapter5;
 
 import java.util.function.Supplier;
 
-public class StorageModified<T> implements Supplier<T> {
+public class StorageModified<T>  {
     private T tmp = null;
     private final Supplier<T> getter;
 
@@ -14,11 +14,12 @@ public class StorageModified<T> implements Supplier<T> {
         return new StorageModified<>(getter);
     }
 
-    @Override
-    public T get() {
+    public T get(T t) {
         if (tmp == null) {
             tmp = getter.get();
-            return tmp;
+            if (tmp != null) {
+                return tmp;
+            } else return t;
         }
         return tmp;
     }

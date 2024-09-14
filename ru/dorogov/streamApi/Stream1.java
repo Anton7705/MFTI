@@ -3,13 +3,16 @@ package ru.dorogov.streamApi;
 import ru.dorogov.geometry.Point;
 import ru.dorogov.geometry.PolyLine;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.*;
 import java.util.function.*;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 // Задание 1
 public class Stream1 {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
 
         class PointFun implements Function<Point, Point> {
             @Override
@@ -21,48 +24,35 @@ public class Stream1 {
             }
         }
 
-        PolyLine p1 = new PolyLine().setList(Stream.of(new Point(-5, -6), new Point(1, -2), new Point(3, 22), new Point(10, 9), new Point(3, -22))
+        PolyLine p1 = Stream.of(new Point(-5, -6), new Point(1, -2), new Point(3, 22), new Point(10, 9), new Point(3, -22))
                 .sorted((x, y) -> x.getX() - y.getX())
                 .map(new PointFun())
                 .distinct()
-                .toList());
+                .collect(Collectors.collectingAndThen(
+                        Collectors.toList(),
+                        points -> new PolyLine(points)
+                ));
+
         System.out.println(p1);
-
-
-        String text = "ВАСЯ:5\nПетя:3\nанЯ:5\nДима";
 
         // Задание 2
 
+        Scanner sc = new Scanner(new File("/Users/antondorogov/Desktop/students.txt"));
 
-        Map<Integer, List<String>> groupedPeople = new HashMap<>();
-
-        List<Integer> integerList = new ArrayList<>();
-
-        class MyMap implements Function<String, Map<Integer, List<String>>> {
-            @Override
-            public Map<Integer, List<String>> apply(String s) {
-                String s1 = s.substring(0, 1).toUpperCase().trim() + s.substring(1).toLowerCase().trim();
-                String[] strings = s1.split(":");
-
-                int num = Integer.parseInt(strings[1]);
-                List lst= new ArrayList<>();
-                if (integerList.contains(num)) {
-                    groupedPeople.get(num).add(strings[0]);
-                } else {
-                    lst.add(strings[0]);
-                groupedPeople.put(num, lst);
-                }
-                integerList.add(num);
-                return groupedPeople;
-            }
-        }
-
-        Arrays.stream(text.split("\n"))
+        Map<Integer, List<String>> str1 = Stream.generate(() -> sc.next())
+                .takeWhile(x -> sc.hasNext())
+                .map(s -> s.substring(0, 1).toUpperCase().trim()
+                        + s.substring(1).toLowerCase().trim())
                 .filter(line -> line.contains(":"))
-                .map(new MyMap()).toArray();
+                .map(line -> line.split(":"))
+                .collect(Collectors.groupingBy(
+                        x -> Integer.parseInt(x[1]),
+                        Collectors.mapping(x -> x[0],
+                                Collectors.toList())
+                ));
 
-        System.out.println(groupedPeople);
 
+        System.out.println(str1);
     }
 }
 

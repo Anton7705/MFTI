@@ -13,6 +13,9 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 public class TestReflection {
 
     MonkeyForTestingReflection monkey;
@@ -45,7 +48,7 @@ public class TestReflection {
     @Test
     @DisplayName("Class annotation check")
     void test3() {
-        Assertions.assertTrue(monkey.getClass().isAnnotationPresent(Default.class));
+        assertTrue(monkey.getClass().isAnnotationPresent(Default.class));
     }
 
     @Test
@@ -56,7 +59,15 @@ public class TestReflection {
         if (map.containsKey(null)) throw new AssertionFailedError("Key in the map should not be null");
     }
 
-
+    @Test
+    @DisplayName("Annotation check")
+    void test5() {
+        HashMap<Class<?>, Object> map = monkey.findAllFields(Config.class);
+        assertEquals(2, map.size());
+        assertTrue(map.containsKey(Integer.class));
+        assertTrue(map.containsKey(String.class));
+        assertTrue(map.containsKey(Boolean.class));
+    }
 
     @BeforeEach
     void createTestingObj() {

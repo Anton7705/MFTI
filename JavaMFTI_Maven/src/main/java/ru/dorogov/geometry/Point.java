@@ -1,10 +1,17 @@
 package ru.dorogov.geometry;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Objects;
 
 //3.1.2
 public class Point implements Cloneable {
+    @Getter
+    @Setter
      int x;
+    @Getter
+    @Setter
      int y;
 
     public Point(int x, int y) {
@@ -37,21 +44,6 @@ public class Point implements Cloneable {
         return "{" + x + ";" + y + "}";
     }
 
-    public int getX() {
-        return x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
 
     @Override
     public Point clone() {

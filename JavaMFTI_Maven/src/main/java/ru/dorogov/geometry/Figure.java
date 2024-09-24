@@ -3,6 +3,7 @@ package ru.dorogov.geometry;
 //3.2.4
 public abstract class Figure {
     public static final double PI = 3.14;
+
     private Point p1;
 
     public Figure(Point p1) {

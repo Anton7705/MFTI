@@ -1,5 +1,7 @@
 package ru.dorogov.geometry;
 
+
+
 //3.2.4
 public class Rectangle extends Figure {
     private int side1;

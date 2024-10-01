@@ -1,6 +1,5 @@
 package ru.dorogov.education;
-// 1.6.9
-// 5.1.4
+
 
 import ru.dorogov.сhapter5.MyComparable;
 

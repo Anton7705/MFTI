@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-class A implements Able {
+public class CacheHandlerTest implements Able {
     int x = 100;
     double y = 99.9;
     float f = 12.12F;

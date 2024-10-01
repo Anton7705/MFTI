@@ -170,7 +170,7 @@ class TestReflectionCache {
     @BeforeEach
     void createTestingObj() {
         myUtilClass = new MyUtilClass();
-        Able A = new A();
-        TestCache = myUtilClass.cache(A);
+        Able CacheHandlerTest1 = new CacheHandlerTest();
+        TestCache = myUtilClass.cache(CacheHandlerTest1);
     }
 }

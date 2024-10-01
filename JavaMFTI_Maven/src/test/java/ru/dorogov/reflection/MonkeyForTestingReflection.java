@@ -1,14 +1,26 @@
 package ru.dorogov.reflection;
 
-import org.junit.jupiter.api.Test;
+
 @Default
-public class MonkeyForTestingReflection extends UtilClass {
-    @Default private String s = "BOB";
+class MonkeyGrandfather {
+    public int age;
+    protected Object object;
+}
+
+class MonkeyFather extends MonkeyGrandfather {
+    private static String name;
+    private static int weight;
+}
+
+public class MonkeyForTestingReflection extends MonkeyFather {
+    @Default
+    String s = "BOB";
 
     Integer test1() {
         return 99;
     }
-    void setS (){
+
+    void setS() {
         System.out.println("aaa");
     }
 }

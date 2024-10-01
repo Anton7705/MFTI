@@ -13,12 +13,13 @@ public class UtilClass {
 //7.3.2
 
     @SneakyThrows
-    static HashMap<Class<?>, Object> findAllFields(Class value) {
+    public HashMap<Class<?>, Object> findAllObjects(Class value) {
         Object o = value.newInstance();
         Method[] methods = value.getDeclaredMethods();
         HashMap<Class<?>, Object> map = new HashMap<>();
         for (int i = 0; i < methods.length; i++) {
-            if (methods[i].getReturnType() != void.class) { // test4
+            if (methods[i].getReturnType() != void.class) {
+                methods[i].setAccessible(true);
                 Object object = methods[i].invoke(o);
                 map.put(object.getClass(), object);
             }
@@ -26,53 +27,17 @@ public class UtilClass {
         return map;
     }
 
-    static List<Field> getAllField(Class clz) {
+    public List<Field> getAllFields(Class clz) {
         if (clz.equals(Object.class)) return new ArrayList<>();
         List<Field> fields = new ArrayList<>();
         fields.addAll(List.of(clz.getDeclaredFields()));
-        fields.addAll(getAllField(clz.getSuperclass()));
+        fields.addAll(getAllFields(clz.getSuperclass()));
         return fields;
-    }
-
-    @SneakyThrows
-    public static void reset(Object... objects) {
-
-        for (Object object : objects) {
-            Class<?> clazz = object.getClass();
-
-            List<Field> filedsList = getAllField(clazz); // test1
-
-            for (Field f : filedsList) {
-                f.setAccessible(true);
-                Default annotation = f.getAnnotation(Default.class); // test2
-                if (annotation == null) annotation = clazz.getAnnotation(Default.class); // test3
-                if (annotation == null) continue;
-                HashMap<Class<?>, Object> defaultVal = findAllFields(annotation.value());
-                if (!defaultVal.containsKey(f.getType())) {
-                    continue;
-                }
-                try {
-                    f.set(object, defaultVal.get(f.getType()));
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        }
-    }
-
-    // 7.3.4
-    public static void validateVer2(Object... objects) {
-        for (Object object : objects) {
-            if (object.getClass().isAnnotationPresent(Validate.class)) {
-                Class clazz = object.getClass().getAnnotation(Validate.class).value();
-                validate(object, clazz);
-            }
-        }
     }
 
     //7.14
     @SneakyThrows
-    private static void validate(Object object, Class<?> clazz) {
+    void validate(Object object, Class<?> clazz) {
         Method[] methods = clazz.getDeclaredMethods();
         Object object1 = clazz.newInstance();
         for (Method method : methods) {
@@ -89,10 +54,7 @@ public class UtilClass {
         }
     }
 
-
-    // 7.1.6
-
-    public static <T> T cache(T object) {
+    public <T> T cache(T object) {
         T t = (T) Proxy.newProxyInstance(object.getClass().getClassLoader(),
                 object.getClass().getInterfaces(), new CacheHandler(object));
         return t;
@@ -108,7 +70,8 @@ class CacheHandler implements InvocationHandler {
     }
 
     @Override
-    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+    @SneakyThrows
+    public Object invoke(Object proxy, Method method, Object[] args) {
 
         Method m = ob.getClass().getMethod(method.getName(), method.getParameterTypes());
 

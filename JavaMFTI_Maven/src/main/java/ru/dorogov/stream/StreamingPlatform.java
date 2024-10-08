@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StreamingPlatform <T> {
-    Reader<T> reader;
-    List<Transformer<T>> list = new ArrayList<>();
-    Writer<T> writer;
+    public Reader<T> reader;
+    public List<Transformer<T>> list = new ArrayList<>();
+    public Writer<T> writer;
 
     public final void stream() {
         T tmp = reader.read();

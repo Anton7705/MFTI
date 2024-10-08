@@ -1,8 +1,17 @@
 package ru.dorogov.trafficLight;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
+
 public class Starter {
     public static void main(String[] args) {
-        TrafficLight tl = new TrafficLight();
+        ApplicationContext ctx =new AnnotationConfigApplicationContext("ru.dorogov.trafficLight");
+        TrafficLight tl = ctx.getBean(TrafficLight.class);
         tl.next();
         tl.next();
         tl.next();
@@ -17,8 +26,17 @@ public class Starter {
     }
 }
 
+
+@Component("TrafficLight")
 class TrafficLight {
-    private Color cur = new Red();
+
+    private Color cur;
+
+    @Autowired
+    @Qualifier("red")
+    void setCur(Color cur) {
+        this.cur = cur;
+    }
 
     public void next() {
         System.out.println(cur);
@@ -34,10 +52,12 @@ class TrafficLight {
     }
 }
 
+
 interface Color {
     Color next();
 }
 
+@Component
 class Red implements Color {
     public Color next() {
         return new YRed();
@@ -49,6 +69,7 @@ class Red implements Color {
     }
 }
 
+@Component
 class Green implements Color {
     public Color next() {
         return new YGreen();
@@ -60,6 +81,7 @@ class Green implements Color {
     }
 }
 
+@Component
 class YGreen implements Color {
     public Color next() {
         return new Red();
@@ -71,6 +93,7 @@ class YGreen implements Color {
     }
 }
 
+@Component
 class YRed implements Color {
     public Color next() {
         return new Green();
@@ -82,12 +105,7 @@ class YRed implements Color {
     }
 }
 
-//class Black implements Color {
-//    public Color next() {
-//        return this;
-//    }
-//}
-
+@Component
 class yBlack implements Color {
     public Color next() {
         return new bYellow();
@@ -99,6 +117,7 @@ class yBlack implements Color {
     }
 }
 
+@Component
 class bYellow implements Color {
     public Color next() {
         return new yBlack();

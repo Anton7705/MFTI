@@ -2,6 +2,8 @@ package ru.dorogov.reflection;
 
 
 import lombok.SneakyThrows;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.lang.reflect.*;
 import java.util.*;
@@ -15,7 +17,7 @@ public class UtilClass {
     @SneakyThrows
     public HashMap<Class<?>, Object> findAllObjects(Class value) {
         Object o = value.newInstance();
-        Method[] methods = value.getDeclaredMethods();
+        Method[] methods = o.getClass().getDeclaredMethods();
         HashMap<Class<?>, Object> map = new HashMap<>();
         for (int i = 0; i < methods.length; i++) {
             if (methods[i].getReturnType() != void.class) {

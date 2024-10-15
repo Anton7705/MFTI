@@ -1,46 +1,47 @@
 package ru.dorogov.main;
-import lombok.SneakyThrows;
+
+import org.h2.jdbcx.JdbcDataSource;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Bean;
+import ru.dorogov.jdbc.*;
 
-import java.util.Date;
-import java.util.function.Predicate;
+import javax.sql.DataSource;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.List;
 
+
+@SpringBootApplication
 public class Main {
-    @SneakyThrows
     public static void main(String[] args) {
-        ApplicationContext ctx = new AnnotationConfigApplicationContext("ru.dorogov.mySpring");
-        System.out.println(new Date());
-        Thread.sleep(1000);
-        String h1 = (String) ctx.getBean("hi");
-        System.out.println(h1);
-
-        int i1 = (int) ctx.getBean("random");
-        int i2 = (int) ctx.getBean("random");
-        int i3 = (int) ctx.getBean("random");
-        int i4 = (int) ctx.getBean("random");
-        System.out.println(i1);
-        System.out.println(i2);
-        System.out.println(i3);
-        System.out.println(i4);
-
-        Date date = (Date) ctx.getBean("date");
-        System.out.println(date);
-        Thread.sleep(1000);
-        Date date1 = (Date) ctx.getBean("date");
-        System.out.println(date1);
-
-        Predicate<Integer> p = (Predicate<Integer>) ctx.getBean("rule");
-        System.out.println(p.test(4));
-
-        int I1 = ctx.getBean("max", int.class);
-        System.out.println(I1);
-
-        int I2 = ctx.getBean("min", int.class);
-        System.out.println(I2);
-
+        try {
+            DbSelector.connection = DriverManager.getConnection("jdbc:h2:.\\Office");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        ApplicationContext applicationContex = new AnnotationConfigApplicationContext("ru.dorogov.jdbc");
+        DbSelector dbSelector = applicationContex.getBean(DbSelector.class);
+        List<Employee> emps = dbSelector.findAll(Employee.class);
+        emps.forEach(System.out::println);
+        System.out.println("----");
     }
 }
 
-
+//
+//    @Bean
+//    DataSource dataSource() {
+//        JdbcDataSource jdbcDataSource = new JdbcDataSource();
+//        jdbcDataSource.setURL("jdbc:h2:.\\Office");
+//        return jdbcDataSource;
+//    }
+//
+//    public static void main(String[] args) {
+//        ApplicationContext applicationContext = SpringApplication.run(Starter.class);
+//        EmployeeRepo repo = applicationContext.getBean(EmployeeRepo.class);
+//        List<Employee> list = repo.findAll();
+//        list.forEach(System.out::println);
+//    }
+//}

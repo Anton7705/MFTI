@@ -1,0 +1,272 @@
+2024-10-10 16:51:46.447760+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "SELECT * FROM VALUES[*]"; ожидалось "ROW (, (, INTERSECTS (, NOT, EXISTS, UNIQUE, INTERSECTS"
+Syntax error in SQL statement "SELECT * FROM VALUES[*]"; expected "ROW (, (, INTERSECTS (, NOT, EXISTS, UNIQUE, INTERSECTS"; SQL statement:
+SELECT * FROM VALUES [42001-232]
+2024-10-10 23:39:03.827363+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "[*]SE:ECT * FROM Employee"; ожидалось "SAVEPOINT, SCRIPT, SHUTDOWN"
+Syntax error in SQL statement "[*]SE:ECT * FROM Employee"; expected "SAVEPOINT, SCRIPT, SHUTDOWN"; SQL statement:
+SE:ECT * FROM Employee [42001-232]
+2024-10-10 23:49:24.350571+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Ошибка преобразования данных при конвертации "Pete"
+Data conversion error converting "Pete" [22018-232]
+2024-10-11 23:28:32.762121+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Недопустимое значение "0" для параметра "columnIndex"
+Invalid value "0" for parameter "columnIndex" [90008-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:658)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.getInvalidValueException(DbException.java:298)
+	at org.h2.jdbc.JdbcResultSet.checkColumnIndex(JdbcResultSet.java:3524)
+	at org.h2.jdbc.JdbcResultSet.getInt(JdbcResultSet.java:319)
+	at ru.dorogov.main.Main.main(Main.java:13)
+2024-10-11 23:28:33.351569+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Недопустимое значение "0" для параметра "columnIndex"
+Invalid value "0" for parameter "columnIndex" [90008-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:658)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.getInvalidValueException(DbException.java:298)
+	at org.h2.jdbc.JdbcResultSet.checkColumnIndex(JdbcResultSet.java:3524)
+	at org.h2.jdbc.JdbcResultSet.getInt(JdbcResultSet.java:319)
+	at ru.dorogov.main.Main.main(Main.java:13)
+2024-10-11 23:28:36.385268+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Ошибка преобразования данных при конвертации "Liz"
+Data conversion error converting "Liz" [22018-232]
+2024-10-11 23:42:05.005592+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Нет данных
+No data is available [2000-232]
+2024-10-11 23:42:21.769512+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Нет данных
+No data is available [2000-232]
+2024-10-11 23:42:36.093811+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Нет данных
+No data is available [2000-232]
+2024-10-11 23:43:02.519102+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Недопустимое значение "0" для параметра "parameterIndex"
+Invalid value "0" for parameter "parameterIndex" [90008-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:658)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.getInvalidValueException(DbException.java:298)
+	at org.h2.jdbc.JdbcPreparedStatement.setParameter(JdbcPreparedStatement.java:1396)
+	at org.h2.jdbc.JdbcPreparedStatement.setInt(JdbcPreparedStatement.java:369)
+	at ru.dorogov.main.Main.main(Main.java:13)
+2024-10-11 23:52:29.749467+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Недопустимое значение "0" для параметра "columnIndex"
+Invalid value "0" for parameter "columnIndex" [90008-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:658)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.getInvalidValueException(DbException.java:298)
+	at org.h2.jdbc.JdbcResultSetMetaData.getColumn(JdbcResultSetMetaData.java:422)
+	at org.h2.jdbc.JdbcResultSetMetaData.getCatalogName(JdbcResultSetMetaData.java:165)
+	at ru.dorogov.main.Main.main(Main.java:18)
+2024-10-12 00:45:17.860837+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Объект уже закрыт
+The object is already closed [90007-232]
+2024-10-12 00:48:35.309833+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Ошибка преобразования данных при конвертации "'3I' (EMPLOYEE: ""ID"" INTEGER NOT NULL)"
+Data conversion error converting "'3I' (EMPLOYEE: ""ID"" INTEGER NOT NULL)"; SQL statement:
+UPDATE "PUBLIC"."EMPLOYEE" SET "ID"=? ,"NAME"=?  WHERE "ID"=? [22018-232]
+2024-10-12 00:48:35.313247+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Ошибка преобразования данных при конвертации "'3I' (EMPLOYEE: ""ID"" INTEGER NOT NULL)"
+Data conversion error converting "'3I' (EMPLOYEE: ""ID"" INTEGER NOT NULL)"; SQL statement:
+UPDATE "PUBLIC"."EMPLOYEE" SET "ID"=? ,"NAME"=?  WHERE "ID"=? [22018-232]
+2024-10-12 00:48:54.218671+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Ошибка преобразования данных при конвертации "'3I' (EMPLOYEE: ""ID"" INTEGER NOT NULL)"
+Data conversion error converting "'3I' (EMPLOYEE: ""ID"" INTEGER NOT NULL)"; SQL statement:
+UPDATE "PUBLIC"."EMPLOYEE" SET "ID"=? ,"NAME"=?  WHERE "ID"=? [22018-232]
+2024-10-12 00:48:54.221775+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Ошибка преобразования данных при конвертации "'3I' (EMPLOYEE: ""ID"" INTEGER NOT NULL)"
+Data conversion error converting "'3I' (EMPLOYEE: ""ID"" INTEGER NOT NULL)"; SQL statement:
+UPDATE "PUBLIC"."EMPLOYEE" SET "ID"=? ,"NAME"=?  WHERE "ID"=? [22018-232]
+2024-10-12 01:07:02.519447+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Параметр "#2" не установлен
+Parameter "#2" is not set; SQL statement:
+Update Employee set name=? WHERE ID>? [90012-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:658)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.expression.Parameter.checkSet(Parameter.java:97)
+	at org.h2.command.Prepared.checkParameters(Prepared.java:201)
+	at org.h2.command.CommandContainer.query(CommandContainer.java:221)
+	at org.h2.command.Command.executeQuery(Command.java:196)
+	at org.h2.jdbc.JdbcPreparedStatement.executeQuery(JdbcPreparedStatement.java:130)
+	at ru.dorogov.main.Main.main(Main.java:16)
+2024-10-12 01:14:04.514812+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Параметр "#2" не установлен
+Parameter "#2" is not set; SQL statement:
+Update Employee set name=? WHERE ID>? [90012-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:658)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.expression.Parameter.checkSet(Parameter.java:97)
+	at org.h2.command.Prepared.checkParameters(Prepared.java:201)
+	at org.h2.command.CommandContainer.query(CommandContainer.java:221)
+	at org.h2.command.Command.executeQuery(Command.java:196)
+	at org.h2.jdbc.JdbcPreparedStatement.executeQuery(JdbcPreparedStatement.java:130)
+	at ru.dorogov.main.Main.main(Main.java:16)
+2024-10-12 01:16:47.730622+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Параметр "#1" не установлен
+Parameter "#1" is not set; SQL statement:
+Update Employee set name=? WHERE ID>? [90012-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:658)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.expression.Parameter.checkSet(Parameter.java:97)
+	at org.h2.command.Prepared.checkParameters(Prepared.java:201)
+	at org.h2.command.CommandContainer.query(CommandContainer.java:221)
+	at org.h2.command.Command.executeQuery(Command.java:196)
+	at org.h2.jdbc.JdbcPreparedStatement.executeQuery(JdbcPreparedStatement.java:130)
+	at ru.dorogov.main.Main.main(Main.java:15)
+2024-10-12 01:17:00.971756+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Параметр "#1" не установлен
+Parameter "#1" is not set; SQL statement:
+Update Employee set name=? WHERE ID>? [90012-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:658)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.expression.Parameter.checkSet(Parameter.java:97)
+	at org.h2.command.Prepared.checkParameters(Prepared.java:201)
+	at org.h2.command.CommandContainer.query(CommandContainer.java:221)
+	at org.h2.command.Command.executeQuery(Command.java:196)
+	at org.h2.jdbc.JdbcPreparedStatement.executeQuery(JdbcPreparedStatement.java:130)
+	at ru.dorogov.main.Main.main(Main.java:15)
+2024-10-12 01:18:09.409457+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Параметр "#1" не установлен
+Parameter "#1" is not set; SQL statement:
+Update Employee set name=? WHERE ID>? [90012-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:658)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.expression.Parameter.checkSet(Parameter.java:97)
+	at org.h2.command.Prepared.checkParameters(Prepared.java:201)
+	at org.h2.command.CommandContainer.query(CommandContainer.java:221)
+	at org.h2.command.Command.executeQuery(Command.java:196)
+	at org.h2.jdbc.JdbcPreparedStatement.executeQuery(JdbcPreparedStatement.java:130)
+	at ru.dorogov.main.Main.main(Main.java:14)
+2024-10-12 01:18:55.871160+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Метод разрешен только для запросов. Используйте execute или executeUpdate вместо executeQuery
+Method is only allowed for a query. Use execute or executeUpdate instead of executeQuery; SQL statement:
+Update Employee set name=2 WHERE ID>2 [90002-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:566)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.command.Prepared.query(Prepared.java:250)
+	at org.h2.command.CommandContainer.query(CommandContainer.java:222)
+	at org.h2.command.Command.executeQuery(Command.java:196)
+	at org.h2.jdbc.JdbcPreparedStatement.executeQuery(JdbcPreparedStatement.java:130)
+	at ru.dorogov.main.Main.main(Main.java:14)
+2024-10-12 01:27:57.336033+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Параметр "#1" не установлен
+Parameter "#1" is not set; SQL statement:
+Update Employee set name=? WHERE ID>? [90012-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:658)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.expression.Parameter.checkSet(Parameter.java:97)
+	at org.h2.command.Prepared.checkParameters(Prepared.java:201)
+	at org.h2.command.CommandContainer.query(CommandContainer.java:221)
+	at org.h2.command.Command.executeQuery(Command.java:196)
+	at org.h2.jdbc.JdbcPreparedStatement.executeQuery(JdbcPreparedStatement.java:130)
+	at ru.dorogov.main.Main.main(Main.java:14)
+2024-10-12 01:29:33.260615+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Таблица "EMLPLOYEE" не найдена
+Table "EMLPLOYEE" not found; SQL statement:
+SELECT * FROM EMLPLOYEE [42102-232]
+2024-10-12 01:29:40.245247+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Таблица "EMLPLOYEE" не найдена
+Table "EMLPLOYEE" not found; SQL statement:
+SELECT * FROM EMLPLOYEE [42102-232]
+2024-10-12 01:30:33.446734+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Недопустимое значение "1" для параметра "parameterIndex"
+Invalid value "1" for parameter "parameterIndex" [90008-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:658)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.getInvalidValueException(DbException.java:298)
+	at org.h2.jdbc.JdbcPreparedStatement.setParameter(JdbcPreparedStatement.java:1396)
+	at org.h2.jdbc.JdbcPreparedStatement.setString(JdbcPreparedStatement.java:388)
+	at ru.dorogov.main.Main.main(Main.java:27)
+2024-10-12 14:09:15.716909+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Столбец "id0" не найден
+Column "id0" not found [42122-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3492)
+	at org.h2.jdbc.JdbcResultSet.getInt(JdbcResultSet.java:337)
+	at ru.dorogov.jdbc.DbSelector.findAll(DbSelector.java:27)
+	at ru.dorogov.main.Main.main(Main.java:27)
+2024-10-12 14:23:22.306649+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Таблица "EMPLOYE" не найдена
+Table "EMPLOYE" not found; SQL statement:
+Select * from Employe [42102-232]
+2024-10-12 14:30:48.384230+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Таблица "EEEE" не найдена
+Table "EEEE" not found; SQL statement:
+Select * from EEEE [42102-232]
+2024-10-12 16:43:18.009139+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Столбец "name12" не найден
+Column "name12" not found [42122-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3492)
+	at org.h2.jdbc.JdbcResultSet.getString(JdbcResultSet.java:301)
+	at ru.dorogov.jdbc.DbSelector.findAll(DbSelector.java:47)
+	at ru.dorogov.main.Main.main(Main.java:20)
+2024-10-12 16:47:11.665538+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Столбец "departmentID2" не найден
+Column "departmentID2" not found [42122-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3492)
+	at org.h2.jdbc.JdbcResultSet.getString(JdbcResultSet.java:301)
+	at ru.dorogov.jdbc.DbSelector.findAll(DbSelector.java:51)
+	at ru.dorogov.main.Main.main(Main.java:20)
+2024-10-12 20:39:52.546443+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Недопустимое значение "0" для параметра "columnIndex"
+Invalid value "0" for parameter "columnIndex" [90008-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:658)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.getInvalidValueException(DbException.java:298)
+	at org.h2.jdbc.JdbcResultSetMetaData.getColumn(JdbcResultSetMetaData.java:422)
+	at org.h2.jdbc.JdbcResultSetMetaData.getCatalogName(JdbcResultSetMetaData.java:165)
+	at ru.dorogov.jdbc.DbSelector.findAll(DbSelector.java:42)
+	at ru.dorogov.main.Main.main(Main.java:24)
+2024-10-12 20:41:05.824630+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Недопустимое значение "0" для параметра "columnIndex"
+Invalid value "0" for parameter "columnIndex" [90008-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:658)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.getInvalidValueException(DbException.java:298)
+	at org.h2.jdbc.JdbcResultSetMetaData.getColumn(JdbcResultSetMetaData.java:422)
+	at org.h2.jdbc.JdbcResultSetMetaData.getColumnType(JdbcResultSetMetaData.java:99)
+	at ru.dorogov.jdbc.DbSelector.findAll(DbSelector.java:42)
+	at ru.dorogov.main.Main.main(Main.java:24)
+2024-10-12 20:43:14.075981+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Недопустимое значение "5" для параметра "columnIndex"
+Invalid value "5" for parameter "columnIndex" [90008-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:658)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.getInvalidValueException(DbException.java:298)
+	at org.h2.jdbc.JdbcResultSetMetaData.getColumn(JdbcResultSetMetaData.java:422)
+	at org.h2.jdbc.JdbcResultSetMetaData.getColumnType(JdbcResultSetMetaData.java:99)
+	at ru.dorogov.jdbc.DbSelector.findAll(DbSelector.java:42)
+	at ru.dorogov.main.Main.main(Main.java:24)

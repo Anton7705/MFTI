@@ -1,17 +1,18 @@
 package ru.dorogov.trafficLight;
 
+
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 public class Starter {
     public static void main(String[] args) {
         ApplicationContext ctx =new AnnotationConfigApplicationContext("ru.dorogov.trafficLight");
         TrafficLight tl = ctx.getBean(TrafficLight.class);
+//        tl.on();
         tl.next();
         tl.next();
         tl.next();
@@ -19,7 +20,7 @@ public class Starter {
         tl.next();
         tl.next();
         tl.next();
-        tl.waiting();
+//        tl.waiting();
         tl.next();
         tl.next();
         tl.next();
@@ -30,13 +31,15 @@ public class Starter {
 @Component("TrafficLight")
 class TrafficLight {
 
+    @Autowired
+    @Qualifier("Red")
+    private Color base;
+
     private Color cur;
 
     @Autowired
-    @Qualifier("red")
-    void setCur(Color cur) {
-        this.cur = cur;
-    }
+    @Qualifier("yBlack")
+    private yBlack waitingColor;
 
     public void next() {
         System.out.println(cur);
@@ -44,11 +47,12 @@ class TrafficLight {
     }
 
     public void waiting() {
-        cur = new yBlack();
+        cur = waitingColor;
     }
 
+    @PostConstruct
     public void on() {
-        cur = new Red();
+        cur = base;
     }
 }
 
@@ -58,9 +62,13 @@ interface Color {
 }
 
 @Component
+@Qualifier("Red")
 class Red implements Color {
+    @Autowired
+    @Qualifier("YRed")
+    Color next;
     public Color next() {
-        return new YRed();
+        return next;
     }
 
     @Override
@@ -70,9 +78,13 @@ class Red implements Color {
 }
 
 @Component
+@Qualifier("Green")
 class Green implements Color {
+    @Autowired
+    @Qualifier("YGreen")
+    Color next;
     public Color next() {
-        return new YGreen();
+        return next;
     }
 
     @Override
@@ -83,8 +95,11 @@ class Green implements Color {
 
 @Component
 class YGreen implements Color {
+    @Autowired
+    @Qualifier("Red")
+    Color next;
     public Color next() {
-        return new Red();
+        return next;
     }
 
     @Override
@@ -95,8 +110,11 @@ class YGreen implements Color {
 
 @Component
 class YRed implements Color {
+    @Autowired
+    @Qualifier("Green")
+    Color next;
     public Color next() {
-        return new Green();
+        return next;
     }
 
     @Override
@@ -107,8 +125,11 @@ class YRed implements Color {
 
 @Component
 class yBlack implements Color {
+    @Autowired
+    @Qualifier("bYellow")
+    Color next;
     public Color next() {
-        return new bYellow();
+        return next;
     }
 
     @Override
@@ -119,8 +140,11 @@ class yBlack implements Color {
 
 @Component
 class bYellow implements Color {
+    @Autowired
+    @Qualifier("yBlack")
+    Color next;
     public Color next() {
-        return new yBlack();
+        return next;
     }
 
     @Override

@@ -11,4 +11,14 @@ public class ConfigHello {
     String hi() {
         return "Hello world";
     }
+
+    @Bean("min")
+    int i1() {
+        return -1;
+    }
+
+    @Bean("max")
+    int i2() {
+        return 3;
+    }
 }

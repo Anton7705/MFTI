@@ -5,4 +5,5 @@ import java.sql.ResultSet;
 
 public interface Handler {
     void make (Field f, Object resObject, ResultSet res, String columnName);
+    Class<?> getType();
 }

@@ -56,7 +56,7 @@ public class UtilClass {
         }
     }
 
-    public <T> T cache(T object) {
+    public static <T> T cache(T object) {
         T t = (T) Proxy.newProxyInstance(object.getClass().getClassLoader(),
                 object.getClass().getInterfaces(), new CacheHandler(object));
         return t;

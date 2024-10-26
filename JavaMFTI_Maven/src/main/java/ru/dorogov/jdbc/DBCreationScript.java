@@ -1,7 +1,10 @@
 package ru.dorogov.jdbc;
 
+import org.springframework.stereotype.Component;
+
 import java.sql.*;
 
+@Component
 public class DBCreationScript {
 
     public static void createDB() {

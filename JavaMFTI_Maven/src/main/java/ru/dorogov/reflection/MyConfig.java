@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Config {
+public class MyConfig {
 
     Integer defaultForInt() {
         return 23;
@@ -18,3 +18,4 @@ public class Config {
     }
 
 }
+

@@ -45,14 +45,14 @@ public class TestReflection {
     @Test
     @DisplayName("Finding all methods from Config class by UtilClass.findAllObjects without super class methods")
     void test3() {
-        HashMap<Class<?>, Object> map = myUtilClass.findAllObjects(Config.class);
+        HashMap<Class<?>, Object> map = myUtilClass.findAllObjects("Config");
         assertEquals(4, map.size());
     }
 
     @Test
     @DisplayName("HashMap includes all keys from Config class without super class")
     void test4() {
-        HashMap<Class<?>, Object> map = myUtilClass.findAllObjects(Config.class);
+        HashMap<Class<?>, Object> map = myUtilClass.findAllObjects("Config");
         assertTrue(map.containsKey(Integer.class) && map.get(Integer.class).equals(23));
         assertTrue(map.containsKey(String.class) && map.get(String.class).equals("A"));
         assertTrue(map.containsKey(Double.class) && map.get(Double.class).equals(11.11));
@@ -64,7 +64,7 @@ public class TestReflection {
     @DisplayName("HashMap check")
     @SneakyThrows
     void test5() {
-        HashMap<Class<?>, Object> map = myUtilClass.findAllObjects(MonkeyForTestingReflection.class);
+        HashMap<Class<?>, Object> map = myUtilClass.findAllObjects("MonkeyForTestingReflection");
         if (map.containsKey(null)) throw new AssertionFailedError("Key in the map should not be null");
     }
 

@@ -16,7 +16,7 @@ import java.util.List;
 public class Resetter {
     static UtilClass utilClass = new UtilClass();
     @SneakyThrows
-    public static void reset(Object... objects) {
+    public static void reset(Object ob, Object... objects) {
 
         for (Object object : objects) {
             Class<?> clazz = object.getClass();
@@ -28,7 +28,7 @@ public class Resetter {
                 Default annotation = f.getAnnotation(Default.class);
                 if (annotation == null) annotation = clazz.getAnnotation(Default.class);
                 if (annotation == null) continue;
-                HashMap<Class<?>, Object> defaultVal = utilClass.findAllObjects(annotation.value());
+                HashMap<Class<?>, Object> defaultVal = utilClass.findAllObjects(ob.getClass());
                 if (!defaultVal.containsKey(f.getType())) {
                     continue;
                 }
@@ -40,4 +40,5 @@ public class Resetter {
             }
         }
     }
+
 }

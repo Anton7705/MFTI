@@ -13,4 +13,9 @@ public class StringHandler implements Handler {
     public void make(Field f, Object resObject, ResultSet res, String columnName) {
         f.set(resObject, res.getString(columnName));
     }
+
+    @Override
+    public Class<String> getType() {
+        return String.class;
+    }
 }

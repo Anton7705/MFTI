@@ -7,15 +7,15 @@ import lombok.ToString;
 
 @ToString
 @Entity
-@MyTable("Employee")
+//@MyTable("Employee")
 public class Employee {
     @Id
-    @ColumnName("id")
-    Integer id12;
-    @ColumnName("name")
-    String name12;
-    @ColumnName("departmentID")
-    String departmentID2;
+//    @ColumnName("id")
+    Integer id;
+//    @ColumnName("name")
+    String name;
+//    @ColumnName("departmentID")
+    String departmentID;
 }
 
 

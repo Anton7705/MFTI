@@ -12,4 +12,9 @@ public class IntegerHandler implements Handler{
     public void make(Field f, Object resObject, ResultSet res, String columnName) {
         f.set(resObject, res.getInt(columnName));
     }
+
+    @Override
+    public Class<Integer> getType() {
+        return Integer.class;
+    }
 }

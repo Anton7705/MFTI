@@ -1,5 +1,6 @@
 package ru.dorogov.web1.controllers;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -71,6 +72,7 @@ public class GameController {
         return "gameEditRoot";
     }
 
+    @Transactional
     @PostMapping("/game/{id}/edit")
     public String gameUpdateRoot (@RequestParam("name") String name,
                                      @RequestParam("price") Integer price,@PathVariable(value = "id") Integer id) {
@@ -81,6 +83,7 @@ public class GameController {
         return "redirect:/root";
     }
 
+    @Transactional
     @GetMapping("/game/{id}/remove")
     public String gameDeleteRoot (@PathVariable(value = "id") Integer id) {
         Game game = gameRepo.findById(id).orElseThrow();

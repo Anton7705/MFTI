@@ -1,5 +1,6 @@
 package ru.dorogov.web1.controllers;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,6 +47,7 @@ public class ArticleController {
         return "redirect:/root";
     }
 
+    @Transactional
     @PostMapping("/article/{id}/edit")
     public String articleUpdateRoot (@RequestParam("title") String title,
                                      @RequestParam("body") String body,
@@ -58,6 +60,7 @@ public class ArticleController {
         return "redirect:/root";
     }
 
+    @Transactional
     @GetMapping("/article/{id}/remove")
     public String articleDeleteRoot (@PathVariable(value = "id") Integer id) {
         Article article = articleRepo.findById(id).orElseThrow();

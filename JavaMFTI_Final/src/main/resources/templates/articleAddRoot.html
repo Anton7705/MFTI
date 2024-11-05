@@ -12,9 +12,9 @@
 <div class="container mt-5 mb-5">
     <h1>Добваление статей</h1>
     <form action ="/article/addRoot" method="post">
-        <input type="text" name = "title" placeholder="Название" class="form-control"><br>
-        <textarea name = "body" placeholder="Текст статьи" class="form-control"></textarea><br>
-        <input type="number" name = "score" min="1" max="5" value="1" placeholder="Оценка" class="form-control"><br>
+        <input type="text" name = "title" placeholder="Название" minlength="3" required class="form-control"><br>
+        <textarea name = "body" placeholder="Текст статьи" minlength="10" required class="form-control"></textarea><br>
+        <input type="number" name = "score" min="1" max="5" value="1" required placeholder="Оценка" class="form-control"><br>
         <button type="submit" class="btn btn-success">Добавить </button>
     </form>
 </div>

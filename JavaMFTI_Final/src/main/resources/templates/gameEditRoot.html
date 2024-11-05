@@ -13,8 +13,8 @@
     <h1>Редактирование статьи</h1>
     <div th:each="element : ${gameInf}">
         <form method="post">
-            <input type="text" th:value="${element.name}" name = "name" placeholder="Название" class="form-control"><br>
-            <input type="number" th:value ="${element.price}" name = "price" min="1" max="100000" value="100" placeholder="Цена" class="form-control"><br>
+            <input type="text" th:value="${element.name}" name = "name" placeholder="Название" minlength="3" required class="form-control"><br>
+            <input type="number" th:value ="${element.price}" name = "price" min="1" max="100000" value="100" required placeholder="Цена" class="form-control"><br>
             <button type="submit" class="btn btn-success">Обновить </button>
         </form>
     </div>

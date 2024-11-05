@@ -13,9 +13,9 @@
     <h1>Редактирование статьи</h1>
     <div th:each="element : ${articleInf}">
     <form method="post">
-        <input type="text" th:value="${element.title}" name = "title" placeholder="Название" class="form-control"><br>
-        <textarea name = "body"  placeholder="Текст статьи" class="form-control" th:text="${element.body}" /><br>
-        <input type="number" th:value ="${element.score}" name = "score" min="1" max="5" value="1" placeholder="Оценка" class="form-control"><br>
+        <input type="text" th:value="${element.title}" name = "title" placeholder="Название" minlength="3" required class="form-control"><br>
+        <textarea name = "body"  placeholder="Текст статьи" class="form-control" th:text="${element.body}" minlength="10" required /><br>
+        <input type="number" th:value ="${element.score}" name = "score" min="1" max="5" value="1" required placeholder="Оценка" class="form-control"><br>
         <button type="submit" class="btn btn-success">Обновить </button>
     </form>
         </div>

@@ -20,36 +20,28 @@ public class GameController {
     @Autowired
     GameRepo gameRepo;
 
-    List<Game> toList(Integer id) {
-        Optional<Game> game = gameRepo.findById(id);
-        ArrayList<Game> list = new ArrayList<>();
-        game.ifPresent(list::add);
-        return list;
-    }
+    @Autowired
+    GameService gameService;
 
     @GetMapping("/game")
     public String allGames (Model model) {
-        model.addAttribute("games", gameRepo.findAll());
-        return "gameMain";
+        return gameService.allGames(model);
     }
 
     @GetMapping("/game/addRoot")
-    public String addGameRoot (Model model) {
+    public String addGameRoot () {
         return "gameAddRoot";
     }
 
     @PostMapping("/game/addRoot")
     public String gameChangeRoot (@RequestParam("name") String name,
                                      @RequestParam("price") Integer price) {
-        Game game = new Game(name, price);
-        gameRepo.save(game);
-        return "redirect:/root";
+        return gameService.gameChangeRoot(name, price);
     }
 
     @GetMapping("/gameRoot")
     public String gameRoot (Model model) {
-        model.addAttribute("games", gameRepo.findAll());
-        return "gameMainRoot";
+        return gameService.gameRoot(model);
     }
 
     @GetMapping("/gameInfoRoot/{id}")
@@ -57,8 +49,7 @@ public class GameController {
         if (!gameRepo.existsById(id)) {
             return "homeRoot";
         }
-        model.addAttribute("gameInf", toList(id));
-        return "gameInfoRoot";
+        return gameService.gameInfoRoot(id, model);
     }
 
     @GetMapping("/game/{id}/edit")
@@ -66,27 +57,22 @@ public class GameController {
         if (!gameRepo.existsById(id)) {
             return "homeRoot";
         }
-        model.addAttribute("gameInf", toList(id));
-        return "gameEditRoot";
+        return gameService.gameEdit(id, model);
     }
 
     @Transactional
     @PostMapping("/game/{id}/edit")
     public String gameUpdateRoot (@RequestParam("name") String name,
                                      @RequestParam("price") Integer price,@PathVariable(value = "id") Integer id) {
-        Game game = gameRepo.findById(id).orElseThrow();
-        game.setName(name);
-        game.setPrice(price);
-        gameRepo.save(game);
-        return "redirect:/root";
+        Game game = gameRepo.findById(id).orElseThrow(() -> new GameDoesNotExistException(id));
+        return gameService.gameUpdateRoot(game, name, price);
     }
 
     @Transactional
     @PostMapping("/game/{id}/remove")
     public String gameDeleteRoot (@PathVariable(value = "id") Integer id) {
         Game game = gameRepo.findById(id).orElseThrow(() -> new GameDoesNotExistException(id));
-        gameRepo.delete(game);
-        return "redirect:/root";
+        return gameService.gameDeleteRoot(game);
     }
 
     @GetMapping("/game/{id}")

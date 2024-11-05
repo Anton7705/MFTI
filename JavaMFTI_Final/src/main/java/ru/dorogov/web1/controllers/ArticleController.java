@@ -21,21 +21,16 @@ public class ArticleController {
     @Autowired
     ArticleRepo articleRepo;
 
-    List<Article> toList(Integer id) {
-        Optional<Article> article = articleRepo.findById(id);
-        ArrayList<Article> list = new ArrayList<>();
-        article.ifPresent(list::add);
-        return list;
-    }
+    @Autowired
+    ArticleService articleService;
 
     @GetMapping("/article")
     public String article (Model model) {
-        model.addAttribute("articles", articleRepo.findAll());
-        return "articleMain";
+        return articleService.article(model);
     }
 
     @GetMapping("/article/addRoot")
-    public String articleRoot (Model model) {
+    public String articleRoot () {
         return "articleAddRoot";
     }
 
@@ -43,9 +38,7 @@ public class ArticleController {
     public String articleChangeRoot (@RequestParam("title") String title,
                                      @RequestParam("body") String body,
                                      @RequestParam("score") Integer score) {
-        Article article = new Article(title, body, score);
-        articleRepo.save(article);
-        return "redirect:/root";
+        return articleService.articleChangeRoot(title, body, score);
     }
 
     @Transactional
@@ -53,20 +46,15 @@ public class ArticleController {
     public String articleUpdateRoot (@RequestParam("title") String title,
                                      @RequestParam("body") String body,
                                      @RequestParam("score") Integer score,@PathVariable(value = "id") Integer id) {
-        Article article = articleRepo.findById(id).orElseThrow();
-        article.setScore(score);
-        article.setBody(body);
-        article.setTitle(title);
-        articleRepo.save(article);
-        return "redirect:/root";
+        Article article = articleRepo.findById(id).orElseThrow(() -> new ArticleDoesNotExistException(id));
+        return articleService.articleUpdateRoot(article,title,body,score);
     }
 
     @Transactional
     @PostMapping("/article/{id}/remove")
     public String articleDeleteRoot (@PathVariable(value = "id") Integer id) {
         Article article = articleRepo.findById(id).orElseThrow(() -> new ArticleDoesNotExistException(id));
-        articleRepo.delete(article);
-        return "redirect:/root";
+        return articleService.articleDeleteRoot(article);
     }
 
 
@@ -75,14 +63,12 @@ public class ArticleController {
         if (!articleRepo.existsById(id)) {
             return "home";
         }
-        model.addAttribute("articleInf", toList(id));
-        return "articleInfo";
+        return articleService.articleInfo(id, model);
     }
 
     @GetMapping("/articleMainRoot")
     public String articleInfoRoot (Model model) {
-        model.addAttribute("articles", articleRepo.findAll());
-        return "articleMainRoot";
+        return articleService.articleInfoRoot(model);
     }
 
     @GetMapping("/articleInfoRoot/{id}")
@@ -90,8 +76,7 @@ public class ArticleController {
         if (!articleRepo.existsById(id)) {
             return "homeRoot";
         }
-        model.addAttribute("articleInf", toList(id));
-        return "articleInfoRoot";
+        return articleService.articleInfoRootId(id, model);
     }
 
     @GetMapping("/article/{id}/edit")
@@ -99,7 +84,6 @@ public class ArticleController {
         if (!articleRepo.existsById(id)) {
             return "homeRoot";
         }
-        model.addAttribute("articleInf", toList(id));
-        return "articleEditRoot";
+        return articleService.articleEdit(id, model);
     }
 }

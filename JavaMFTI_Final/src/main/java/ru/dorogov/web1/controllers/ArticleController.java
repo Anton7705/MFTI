@@ -62,7 +62,7 @@ public class ArticleController {
     }
 
     @Transactional
-    @GetMapping("/article/{id}/remove")
+    @PostMapping("/article/{id}/remove")
     public String articleDeleteRoot (@PathVariable(value = "id") Integer id) {
         Article article = articleRepo.findById(id).orElseThrow(() -> new ArticleDoesNotExistException(id));
         articleRepo.delete(article);

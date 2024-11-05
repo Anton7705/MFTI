@@ -13,8 +13,12 @@
     <div th:each="element : ${gameInf}" class="alert alert-info mt-2">
         <h3 th:text ="${element.name}"/>
         <h2 th:text ="${element.price}"/>
-        <a th:href ="'/game/'+${element.id} + '/edit'" class="btn btn-warning">Редактировать</a>
-        <a th:href ="'/game/'+${element.id} + '/remove'" class="btn btn-warning">Удалить</a>
+        <form th:action ="'/game/'+${element.id} + '/edit'" class="btn btn-warning" method="get" >
+            <button class="btn btn-warning" type="submit">Редактировать</button>
+        </form>
+            <form th:action="'/game/'+${element.id} + '/remove'" method="post" class="btn btn-warning">
+                <button class="btn btn-warning" type="submit">Удалить</button>
+            </form>
     </div>
 </div>
 <div th:insert="patterns/footer :: footer"></div>

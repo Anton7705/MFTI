@@ -13,7 +13,7 @@
     <h1>Добваление игр</h1>
     <form action ="/game/addRoot" method="post">
         <input type="text" name = "name" placeholder="Название" class="form-control"><br>
-        <input type="number" name = "price" value="1" placeholder="Цена" class="form-control"><br>
+        <input type="number" name = "price" min="1" max="100000" value="100" placeholder="Цена" class="form-control"><br>
         <button type="submit" class="btn btn-success">Добавить </button>
     </form>
 </div>

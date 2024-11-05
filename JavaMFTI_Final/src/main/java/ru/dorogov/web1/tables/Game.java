@@ -21,4 +21,9 @@ public class Game {
     String name;
     Integer price;
 
+    public void setPrice(Integer price) {
+        if (price >= 0) {
+            this.price = price;
+        }
     }
+}

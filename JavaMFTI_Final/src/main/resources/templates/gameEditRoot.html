@@ -14,7 +14,7 @@
     <div th:each="element : ${gameInf}">
         <form method="post">
             <input type="text" th:value="${element.name}" name = "name" placeholder="Название" class="form-control"><br>
-            <input type="number" th:value ="${element.price}" name = "price" placeholder="Цена" class="form-control"><br>
+            <input type="number" th:value ="${element.price}" name = "price" min="1" max="100000" value="100" placeholder="Цена" class="form-control"><br>
             <button type="submit" class="btn btn-success">Обновить </button>
         </form>
     </div>

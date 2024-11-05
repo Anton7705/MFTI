@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import ru.dorogov.web1.exceptions.ArticleDoesNotExistException;
 import ru.dorogov.web1.repo.ArticleRepo;
 import ru.dorogov.web1.tables.Article;
 
@@ -63,7 +64,7 @@ public class ArticleController {
     @Transactional
     @GetMapping("/article/{id}/remove")
     public String articleDeleteRoot (@PathVariable(value = "id") Integer id) {
-        Article article = articleRepo.findById(id).orElseThrow();
+        Article article = articleRepo.findById(id).orElseThrow(() -> new ArticleDoesNotExistException(id));
         articleRepo.delete(article);
         return "redirect:/root";
     }

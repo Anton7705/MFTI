@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import ru.dorogov.web1.exceptions.GameDoesNotExistException;
 import ru.dorogov.web1.repo.ArticleRepo;
 import ru.dorogov.web1.repo.GameRepo;
 import ru.dorogov.web1.tables.Article;
@@ -86,7 +87,7 @@ public class GameController {
     @Transactional
     @GetMapping("/game/{id}/remove")
     public String gameDeleteRoot (@PathVariable(value = "id") Integer id) {
-        Game game = gameRepo.findById(id).orElseThrow();
+        Game game = gameRepo.findById(id).orElseThrow(() -> new GameDoesNotExistException(id));
         gameRepo.delete(game);
         return "redirect:/root";
     }

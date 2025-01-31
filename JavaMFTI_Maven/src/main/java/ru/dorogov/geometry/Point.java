@@ -1,19 +1,18 @@
 package ru.dorogov.geometry;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Objects;
 
 //3.1.2
+@Data
 public class Point implements Cloneable {
-    @Getter
-    @Setter
-     int x;
-    @Getter
-    @Setter
-     int y;
 
+     int x;
+
+     int y;
     public Point(int x, int y) {
         this.x = x;
         this.y = y;

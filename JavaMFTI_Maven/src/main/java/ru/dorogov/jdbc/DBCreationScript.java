@@ -10,21 +10,17 @@ public class DBCreationScript {
     public static void createDB() {
         try (Connection con = DriverManager.getConnection("jdbc:h2:.\\Office")) {
             Statement stm = con.createStatement();
-            stm.executeUpdate("DROP TABLE Department IF EXISTS");
-            stm.executeUpdate("CREATE TABLE Department(ID INT PRIMARY KEY, NAME VARCHAR(255))");
-            stm.executeUpdate("INSERT INTO Department VALUES(1,'Accounting')");
-            stm.executeUpdate("INSERT INTO Department VALUES(2,'IT')");
-            stm.executeUpdate("INSERT INTO Department VALUES(3,'HR')");
+            stm.executeUpdate("DROP TABLE Game IF EXISTS");
+            stm.executeUpdate("CREATE TABLE Game(NAME VARCHAR(255) PRIMARY KEY, COST INT, COUNT INT)");
+            stm.executeUpdate("INSERT INTO Game VALUES('Call of duty 1', 100, 5)");
+            stm.executeUpdate("INSERT INTO Game VALUES('Asassins creed',110, 6)");
+            stm.executeUpdate("INSERT INTO Game VALUES('Witcher',115, 7)");
 
-            stm.executeUpdate("DROP TABLE Employee IF EXISTS");
-            stm.executeUpdate("CREATE TABLE Employee(ID INT PRIMARY KEY, NAME VARCHAR(255), DepartmentID INT)");
-            stm.executeUpdate("INSERT INTO Employee VALUES(1,'Pete',1)");
-            stm.executeUpdate("INSERT INTO Employee VALUES(2,'Ann',1)");
-
-            stm.executeUpdate("INSERT INTO Employee VALUES(3,'Liz',2)");
-            stm.executeUpdate("INSERT INTO Employee VALUES(4,'Tom',2)");
-
-            stm.executeUpdate("INSERT INTO Employee VALUES(5,'Todd',3)");
+            stm.executeUpdate("DROP TABLE Player IF EXISTS");
+            stm.executeUpdate("CREATE TABLE Player(LOGIN VARCHAR(255) PRIMARY KEY, BALANCE INT, GAME VARCHAR(255))");
+            stm.executeUpdate("INSERT INTO Player VALUES('Bob', 500, 'Call of duty 1')");
+            stm.executeUpdate("INSERT INTO Player VALUES('Tom', 400, 'Call of duty 1')");
+            stm.executeUpdate("INSERT INTO Player VALUES('Alex', 300, 'Asassins creed')");
 
         } catch (SQLException e) {
             throw new RuntimeException(e);

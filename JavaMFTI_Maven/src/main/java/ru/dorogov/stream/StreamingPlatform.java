@@ -3,7 +3,7 @@ package ru.dorogov.stream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StreamingPlatform <T> {
+public class StreamingPlatform<T> {
     public Reader<T> reader;
     public List<Transformer<T>> list = new ArrayList<>();
     public Writer<T> writer;
